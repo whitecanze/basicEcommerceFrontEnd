@@ -27,7 +27,7 @@ const Nav = () => {
             className="navbar navbar-expand-lg navbar-dark"
             style={{
                 height: "80px",
-                background:"teal",
+                background:"#ff5411",
                 textTransform:'uppercase'
             }}
         >
@@ -54,15 +54,20 @@ const Nav = () => {
                         </Link>
                     </li>
                     {user && 
-                        <>
-                            <li className="nav-item">
-                                <Link href="/manageProduct">
-                                    <a className="nav-link" id="Manage-btn">Manage product</a>
-                                </Link>
-                            </li>
-                        </>
+                        <li className="nav-item">
+                            <Link href="/manageProduct">
+                                <a className="nav-link" id="Manage-btn">Manage product</a>
+                            </Link>
+                        </li>
                     }
-                    </ul>
+                    {user && user.email == "whitecanze123@gmail.com" &&
+                        <li className="nav-item">
+                            <Link href="/admin">
+                                <a className="nav-link" id="Admin-btn">Admin page</a>
+                            </Link>
+                        </li>
+                    }
+                </ul>
                     {user && (
                         <ul className="navbar-nav d-flex">
                             <li className="nav-item" style={{
@@ -75,7 +80,7 @@ const Nav = () => {
                                         }}>
                                         <i className="fas fa-shopping-cart"></i>
                                         &nbsp;
-                                        <span className="badge bg-danger">
+                                        <span className="badge bg-success">
                                             {user && user.carts && user.carts.length === 0 && 0}
                                             {user &&
                                                 user.carts &&
@@ -86,8 +91,17 @@ const Nav = () => {
                                 </Link>
                             </li>
                             <li className="nav-item" style={{
-                            cursor:"pointer"
-                        }}>
+                                cursor:"pointer"
+                            }}>
+                                <Link href="/user/user_account">
+                                    <a className="nav-link" id="Account-btn">
+                                        Account
+                                    </a>
+                                </Link>
+                            </li>
+                            <li className="nav-item" style={{
+                                cursor:"pointer"
+                            }}>
                                 <a className="nav-link" onClick={signout}>
                                     Sign out
                                 </a>

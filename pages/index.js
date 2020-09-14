@@ -1,10 +1,7 @@
 import { withRouter } from 'next/router'
 import { useEffect,useState } from 'react'
-import { QUERY_USERS } from '../gql/gql_query'
-import { useQuery } from '@apollo/react-hooks'
-const Home = ({ router }) => {
 
-  
+const Home = ({ router }) => {
   useEffect(() => {
     if (router.pathname === '/') {
       if ($('a').hasClass('nav-link')) {
@@ -16,7 +13,6 @@ const Home = ({ router }) => {
 
   return (
     <div>
-
       <div className="container">
         <h1>
           Home Page
