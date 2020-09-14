@@ -4,6 +4,7 @@ import apolloClient from "../apollo/apolloClient"
 import { ApolloProvider } from "@apollo/react-hooks"
 import fetch from "isomorphic-unfetch"
 import cookie from 'cookie'
+import '../styles/style.scss'
 
 // function MyApp({ Component, pageProps, apollo }) {
 //   return (

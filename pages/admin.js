@@ -94,22 +94,22 @@ const adminPage = ({ router }) => {
                     {data && data.users ? data.users.map(user => 
                         <tr key={user.id} style={{
                         border:'solid 1px darkgray'
-                    }}>
-                        <td style={{
-                        border:'solid 1px darkgray'
-                    }}>{hiding_userid(user.id)}....</td>
-                        <td style={{
-                        border:'solid 1px darkgray'
-                    }}>{user.name}</td>
-                        <td style={{
-                        border:'solid 1px darkgray'
-                    }}>{user.email}</td>
-                        <td style={{
-                        border:'solid 1px darkgray'
-                    }}>{user.createdAt}</td>
-                        </tr>
-                    ) : <><h3>Empty!</h3></>
-                        }
+                        }}>
+                            <td style={{
+                            border:'solid 1px darkgray'
+                        }}>{hiding_userid(user.id)}....</td>
+                            <td style={{
+                            border:'solid 1px darkgray'
+                        }}>{user.name}</td>
+                            <td style={{
+                            border:'solid 1px darkgray'
+                        }}>{user.email}</td>
+                            <td style={{
+                            border:'solid 1px darkgray'
+                        }}>{user.createdAt}</td>
+                            </tr>
+                        ) : <><h3>Empty!</h3></>
+                    }
                     </table>
                     
                 </div>

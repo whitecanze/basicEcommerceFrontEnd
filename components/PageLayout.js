@@ -2,7 +2,7 @@ import Nav from './Nav'
 import Head from 'next/head'
 const PageLayout = ({ children }) => {
     return(
-    <div>
+    <div id="asd">
         <Head>
             <title>My Shop</title>
             <link rel="icon" href="/icon.png" />
