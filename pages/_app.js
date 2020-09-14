@@ -101,7 +101,7 @@ MyApp.getInitialProps = async ({ctx, router}) => {
   }
 
   // console.log(token)
-  const response = await fetch('http://localhost:4444/graphql', {
+  const response = await fetch('https://backend-api-01.herokuapp.com/graphql', {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
