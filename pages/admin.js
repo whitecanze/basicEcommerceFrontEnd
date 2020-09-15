@@ -1,9 +1,8 @@
-import React from 'react'
-import { useEffect,useContext,useState } from 'react'
-import { QUERY_ALL_USERS } from '../gql/gql_query'
-import { useQuery } from '@apollo/react-hooks'
+import React,{ useEffect,useContext,useState } from 'react'
 import { AuthContext } from '../appState/AuthProvider'
 import Router from 'next/router'
+import { QUERY_ALL_USERS } from '../gql/gql_query'
+import { useQuery } from '@apollo/react-hooks'
 import { withRouter } from 'next/router'
 const adminPage = ({ router }) => {
     const { data, loading, error } = useQuery(QUERY_ALL_USERS)

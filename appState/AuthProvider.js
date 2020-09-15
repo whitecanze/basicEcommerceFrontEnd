@@ -12,7 +12,7 @@ const AuthProvider = ({ children, userData }) => {
         const syncLogout = e => {
             if (e.key === 'logout') {
                 setUser(null)
-                Router.push('/products')
+                Router.push('/')
             }
         }
 

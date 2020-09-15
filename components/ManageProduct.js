@@ -17,7 +17,7 @@ const ManageProduct = () => {
 
     const [createProduct, { loading, error }] = useMutation(CREATE_PRODUCT, {
         onCompleted: data => {
-            console.log('show data:',data)
+            // console.log('show data:',data)
             setSuccess(true)
             setProductData(data.createProduct)
         },

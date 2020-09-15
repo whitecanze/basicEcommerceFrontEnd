@@ -40,26 +40,14 @@ const ProductItem = ({ prod }) => {
                     damping: 20
                     }}
                 >
-                    <div 
-                        style={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            margin: "40px",
-                            padding: "40px 0",
-                            borderRadius: '6px',
-                            backgroundColor: 'white',
-                            boxShadow:"6px 6px 8px rgba(0,0,0,.5)",
-                        }}
-                    >
-                        
+                    <div className="product-items-box">
                         <Link href='/products/[productId]' as={`/products/${prod.id}`}>
                             <a>
                                 <img loading="lazy" src={prod.imageUrl} alt={prod.description} width='250px' height='250px'></img>
                             </a>
                         </Link>
-                        <h3>{prod.description}</h3>
-                        <h4>{numberWithCommas(parseInt(prod.price))} THB.</h4>
+                        <p>{prod.description}</p>
+                        <p>{numberWithCommas(parseInt(prod.price))} THB.</p>
                         {user && user.id === prod.user.id ?
                             <motion.button
                                 whileHover={{ scale: 1.1 }}

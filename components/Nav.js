@@ -13,6 +13,7 @@ const Nav = () => {
         if (data) {
             setAuthUser(data.user)
         }
+
         // $('a').click((e) => {
         //     console.log(e.target.id)
         //     if ($('#' + e.target.id).hasClass('nav-link')) {
@@ -23,37 +24,49 @@ const Nav = () => {
     }, [data])
     
     return (
-        <nav 
-            className="navbar navbar-expand-lg navbar-dark"
-            style={{
-                height: "80px",
-                background:"#ff5411",
-                textTransform:'uppercase'
-            }}
-        >
-            <div className="container-fluid">
+        <nav className="navbar navbar-expand-lg navbar-dark sticky-top">
+            <div className="container-fluid" style={{textAlign:'center',backgroundColor:"#ff5411",padding:'0',margin:'0'}}>
                 <Link href="/">
                     <a className="navbar-brand" style={{
                         fontSize: "2rem",
-                        margin:"10px"
+                        margin: "10px",
+                        marginLeft:"50px"
                     }}><i className="fab fa-opencart"></i></a>
                 </Link>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
+                <button
+                    className="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                    id="toggle-navbar"
+                >
+                    <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                <div
+                    className="collapse navbar-collapse"
+                    id="navbarSupportedContent"
+                    style={{
+                        marginRight:"50px"
+                    }}
+                >
+                
                 <ul className="navbar-nav mr-auto mb-2 mb-lg-0">
                     <li className="nav-item">
                         <Link href="/">
                             <a id="Home-btn" className="nav-link" aria-current="page" id="Home-btn">Home</a>
                         </Link>
                     </li>
-                    <li className="nav-item" style={liStyle}>
-                        <Link href="/products">
-                            <a className="nav-link" id="Products-btn">Products</a>
-                        </Link>
-                    </li>
-                    {user && 
+                    {user && user.email == "whitecanze123@gmail.com" &&
+                        <li className="nav-item" style={liStyle}>
+                            <Link href="/products">
+                                <a className="nav-link" id="Products-btn">Products</a>
+                            </Link>
+                        </li>
+                    }
+                    {user && user.email == "whitecanze123@gmail.com" &&
                         <li className="nav-item">
                             <Link href="/manageProduct">
                                 <a className="nav-link" id="Manage-btn">Manage product</a>
@@ -73,22 +86,24 @@ const Nav = () => {
                             <li className="nav-item" style={{
                                 position:'relative'
                             }}>
-                                <Link href="/cart">
-                                    <a className="nav-link" id="Cart-btn" style={{
-                                            fontWeight:'bold',
-                                            fontSize:"1rem"
-                                        }}>
-                                        <i className="fas fa-shopping-cart"></i>
-                                        &nbsp;
-                                        <span className="badge bg-success">
-                                            {user && user.carts && user.carts.length === 0 && 0}
-                                            {user &&
-                                                user.carts &&
-                                                user.carts.length > 0 &&
-                                                user.carts.reduce((sum, item) => sum + item.quantity, 0)}
-                                        </span>
-                                    </a>
-                                </Link>
+                                {user.email == "whitecanze123@gmail.com" && 
+                                    <Link href="/cart">
+                                        <a className="nav-link" id="Cart-btn" style={{
+                                                fontWeight:'bold',
+                                                fontSize:"1rem"
+                                            }}>
+                                            <i className="fas fa-shopping-cart"></i>
+                                            &nbsp;
+                                            <span className="badge bg-success">
+                                                {user && user.carts && user.carts.length === 0 && 0}
+                                                {user &&
+                                                    user.carts &&
+                                                    user.carts.length > 0 &&
+                                                    user.carts.reduce((sum, item) => sum + item.quantity, 0)}
+                                            </span>
+                                        </a>
+                                    </Link>
+                                }
                             </li>
                             <li className="nav-item" style={{
                                 cursor:"pointer"
@@ -123,8 +138,8 @@ const Nav = () => {
                             </li>
                         </ul>
                     )}
+                    </div>
                 </div>
-            </div>
         </nav>
     )
 }

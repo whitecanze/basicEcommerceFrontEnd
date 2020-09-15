@@ -41,6 +41,7 @@ const Signup = () => {
                     passError:""
                 })
             }
+            Router.push("/signin")
         }
     })
 
@@ -177,7 +178,7 @@ const Signup = () => {
                     }}
                     type="text"
                     name="name"
-                    placeholder="Username"
+                    placeholder="Full name"
                     value={userInfo.name}
                     onChange={handleChange}
                 />

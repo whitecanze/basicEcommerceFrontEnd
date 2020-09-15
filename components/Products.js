@@ -1,11 +1,10 @@
 import { useQuery } from '@apollo/react-hooks'
 import ProductItem from './ProductItem'
 import { QUERY_PRODUCTS } from '../gql/gql_query'
-import {useEffect} from 'react'
+import { useEffect } from 'react'
 
 const Products = () => {
     const {data,loading,error} = useQuery(QUERY_PRODUCTS,{refetchQueries:[{query: QUERY_PRODUCTS}]})
-    
     if (error) return <div style={{
         width: "500px",
         height: "auto",
@@ -40,33 +39,12 @@ const Products = () => {
     }}>Loading...</h4></div>
     
     return (
-        <div
-            style={{
-                width: "100%",
-                height:"100%",
-                display: "grid",
-                gridTemplateColumns: "repeat(3,1fr)",
-                gridGap: "0",
-                marginTop:"1rem"
-            }}
-        >
-            <style jsx>
-                {`
-                h3{
-                    margin-top:10px;
-                    font-weight:bold;
-                    color:royalblue;
-                    margin-top:15px;
-                }
-                h4{
-                    color:green;
-                    margin-top:15px;
-                }
-                `}
-            </style>
-            {data.products.map(prod => 
-                <ProductItem key={prod.id} prod={prod} />
-            )}
+        <div>
+            <div className="product-items-container">
+                {data.products.map(prod => 
+                    <ProductItem key={prod.id} prod={prod} />
+                    )}
+            </div>
         </div>
     )
 }

@@ -10,6 +10,9 @@ const cartPage = ({ router }) => {
         if (!user) {
             Router.push('/signin')
         }
+        if (user && user.email != "whitecanze123@gmail.com") {
+            Router.push('/')
+        }
         if (router.pathname === '/cart') {
             if ($('a').hasClass('nav-link')) {
                 $('a').removeClass('active')
