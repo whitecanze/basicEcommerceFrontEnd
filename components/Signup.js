@@ -1,11 +1,12 @@
-import { useState,useRef } from 'react'
+import { useState,useRef,useEffect,useContext } from 'react'
 import {useMutation} from '@apollo/react-hooks'
 import {SIGN_UP} from '../gql/gql_mutation'
 import Link from 'next/link'
 import ReCAPTCHA from "react-google-recaptcha"
-
+import Router from 'next/router'
+import {AuthContext} from '../appState/AuthProvider'
 const Signup = () => {
-
+    const { user } = useContext(AuthContext)
     const reRef = useRef()
 
     const [userInfo, setUserInfo] = useState({
@@ -41,7 +42,7 @@ const Signup = () => {
                     passError:""
                 })
             }
-            Router.push("/signin")
+            // Router.push("/signin")
         }
     })
 
@@ -114,13 +115,38 @@ const Signup = () => {
         }
     }
 
+    const ripple = e => {
+        const buttons = document.querySelectorAll(".btns")
+        buttons.forEach((button) => {
+        button.onclick = function (e) {
+            let x = e.pageX - e.target.offsetLeft
+            let y = e.pageY - e.target.offsetTop
+            
+            let ripples = document.createElement("span")
+            
+            ripples.style.left = `${x}px`
+            ripples.style.top = `${y}px`
+            this.appendChild(ripples)
+            setTimeout(()=> {
+            ripples.remove()
+            }, 1000)
+        }
+        })
+    }
+
+    useEffect(() => {
+        ripple()
+        if (!user) {
+            Router.push('/signin')
+        }
+        if (user && user.email != "whitecanze123@gmail.com") {
+            Router.push('/')
+        }
+    })
+
     return (
-        <div 
-            style={{
-                margin: "100px",
-                textAlign: "center"
-            }}
-        >
+        <div style={{width:'100%',backgroundColor:'#222'}}>
+        <div className="signup-container">
             <ReCAPTCHA
                     sitekey={process.env.RECAPTCHA_SITE_KEY}
                     size="invisible"
@@ -128,8 +154,9 @@ const Signup = () => {
                 />
             <h1 style={{
                 textTransform: "uppercase",
-                fontWeight:'bold'
-            }}>sign up</h1>
+                fontWeight:'bold',
+                color:"#e85a19"
+            }}>add new user</h1>
             <div>
                 {success && (
                     <div className="alert alert-success" role="alert" style={{
@@ -137,8 +164,8 @@ const Signup = () => {
                         bottom: "10px",
                         left:"10px"
                     }}>
-                        You're successfully signed up, Please
-                        <Link href="/signin"><a>&nbsp;Sign in.</a></Link>
+                        You're successfully add new user
+                        {/* <Link href="/signin"><a>&nbsp;Sign in.</a></Link> */}
                     </div>
                 )}
                 {error && (
@@ -172,47 +199,43 @@ const Signup = () => {
             >
                 
 
-                <input 
-                    style={{
-                        margin: "5px", height: "30px"
-                    }}
+                <input className="input-cst-lg"
                     type="text"
                     name="name"
                     placeholder="Full name"
                     value={userInfo.name}
                     onChange={handleChange}
                 />
-                <input 
-                    style={{
-                        margin: "5px", height: "30px"
-                    }}
+                <input className="input-cst-lg"
                     type="email"
                     name="email"
                     placeholder="Email"
                     value={userInfo.email}
                     onChange={handleChange}
                 />
-                <input 
-                    style={{
-                        margin: "5px", height: "30px"
-                    }}
+                <input className="input-cst-lg"
                     type="password"
                     name="password"
                     placeholder="Password"
                     value={userInfo.password}
                     onChange={handleChange}
                 />
-                <input 
-                    style={{
-                        margin: "5px", height: "30px"
-                    }}
+                <input className="input-cst-lg"
                     type="password"
                     name="repassword"
                     placeholder="Re-password"
                     value={rePassword.repassword}
                     onChange={handleChangeRepass}
                 />
-                <button
+                <div className="btn-wrapper">
+                    <button
+                        className="btns btn-bg-gre"
+                        draggable="false"
+                        type="submit"
+                        disabled={loading}
+                    >Submit</button>
+                </div>
+                {/* <button
                     style={{
                         margin: "5px",
                         padding: "10px",
@@ -224,10 +247,11 @@ const Signup = () => {
                     }}
                     type="submit"
                     disabled={loading}
-                >Submit</button>
+                >Submit</button> */}
             </form>
 
             
+            </div>
         </div>
     )
 }

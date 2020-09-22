@@ -1,26 +1,36 @@
+$first-color: #ff5411;
+$second-color: #e85a19;
+$thrid-color: #f5ce62;
+$fourth-color: #0162c8;
+$fifth-color: #55e7fc;
+$sixth-color: #77e775;
+$seventh-color: #755bea;
+$eighth-color: #ff72c0;
+$ninth-color: #2196f3;
+
 * {
     margin: 0;
     padding: 0;
     user-select: none;
 }
 
-nav{
-    height:80px;
-    background-color:#ff5411;
+nav {
+    height: 80px;
+    background-color: $first-color;
     text-transform: uppercase;
     z-index: 999;
 }
 
-#toggle-navbar{
-    margin-right:50px;
+#toggle-navbar {
+    margin-right: 50px;
 }
 
-#header-title-text{
-    padding-top:20px;
+#header-title-text {
+    padding-top: 20px;
     text-align: center;
     font-weight: bold;
     text-transform: uppercase;
-    color: #e85a19;
+    color: $second-color;
     font-size: clamp(1rem, 10vw, 5rem);
 }
 
@@ -39,7 +49,7 @@ nav{
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(0deg, #e85a19, #f5ce62);
+    background: linear-gradient(0deg, $second-color, $thrid-color);
     ;
     border-radius: 13px;
 
@@ -47,7 +57,7 @@ nav{
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(0deg, #f5ce62, #e85a19);
+    background: linear-gradient(0deg, $thrid-color, $second-color);
 }
 
 #next {
@@ -59,13 +69,26 @@ nav{
     right: 0;
     width: 100%;
     height: 100vh;
-    background-color: "#222";
+    background: #222;
+}
+
+.signup-container {
+    margin: 100px;
+    text-align: center;
+    color: white;
+}
+
+.signin-container {
+    margin: 100px;
+    text-align: center;
+    color: white;
 }
 
 #asd {
     width: 100%;
     height: 100vh;
-    background-color: "#222";
+    background-color: #222;
+    color: white;
 }
 
 .product-items-container {
@@ -76,8 +99,8 @@ nav{
     flex-wrap: wrap;
     gap: 2em;
     background-color: #222;
-    
-    & > * {
+
+    &>* {
         flex-basis: 600px;
         flex-grow: 1;
     }
@@ -96,6 +119,77 @@ nav{
     }
 }
 
+.btn-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    flex-wrap: wrap;
+
+    &>* {
+        flex-basis: 200px;
+        flex-grow: 1;
+    }
+
+    .btns {
+        position: relative;
+        display: inline-block;
+        padding: 12px 36px;
+        margin: 10px 0;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        letter-spacing: 2px;
+        border-radius: 40px;
+        user-select: none;
+        overflow: hidden;
+
+        span {
+            position: absolute;
+            background: #fff;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: ripples 1s linear infinite;
+        }
+
+        @keyframes ripples {
+            0% {
+                width: 0px;
+                height: 0px;
+                opacity: 0.2;
+            }
+
+            100% {
+                width: 500px;
+                height: 500px;
+                opacity: 0;
+            }
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .btn-bg-org {
+        background: linear-gradient(90deg, $second-color, $thrid-color);
+    }
+
+    .btn-bg-blu {
+        background: linear-gradient(90deg, $fourth-color, $fifth-color);
+    }
+
+    .btn-bg-gre {
+        background: linear-gradient(90deg, $fifth-color, $sixth-color);
+    }
+
+    .btn-bg-pur {
+        background: linear-gradient(90deg, $seventh-color, $eighth-color);
+    }
+}
+
 
 .content-page {
     display: flex;
@@ -104,7 +198,7 @@ nav{
 
     .mycard-box {
         display: flex;
-        flex-direction: rows;
+        flex-direction: row;
         flex-wrap: wrap;
         gap: 2em;
 
@@ -114,82 +208,10 @@ nav{
         }
     }
 
-    .btn-wrapper {
-        display: flex;
-        justify-content: center;
-        gap: 2em;
-        flex-wrap: wrap;
-
-        & > * {
-            flex-basis:200px;
-            flex-grow: 1;
-        }
-
-        .btns {
-            position: relative;
-            display: inline-block;
-            padding: 12px 36px;
-            margin: 10px 0;
-            color: #fff;
-            text-transform: uppercase;
-            font-size: 18px;
-            border: none;
-            outline: none;
-            letter-spacing: 2px;
-            border-radius: 40px;
-            user-select: none;
-            overflow: hidden;
-
-            span {
-                position: absolute;
-                background: #fff;
-                transform: translate(-50%, -50%);
-                border-radius: 50%;
-                pointer-events: none;
-                animation: ripples 1s linear infinite;
-            }
-
-            @keyframes ripples {
-                0% {
-                    width: 0px;
-                    height: 0px;
-                    opacity: 0.2;
-                }
-
-                100% {
-                    width: 500px;
-                    height: 500px;
-                    opacity: 0;
-                }
-            }
-
-            &:focus {
-                outline: none;
-            }
-        }
-
-        .btn-bg-org {
-            background: linear-gradient(90deg, #e85a19, #f5ce62);
-        }
-
-        .btn-bg-blu {
-            background: linear-gradient(90deg, #0162c8, #55e7fc);
-        }
-
-        .btn-bg-gre {
-            background: linear-gradient(90deg, #55e7fc, #77e775);
-        }
-
-        .btn-bg-pur {
-            background: linear-gradient(90deg, #755bea, #ff72c0);
-        }
-    }
-
     .code-Frame-box {
         margin-top: 20px;
         border: solid 1px #745;
-        border-top-left-radius: 13px;
-        border-bottom-left-radius: 13px;
+        border-radius: 3px;
         padding: 10px 25px;
         height: 210px;
         overflow-y: auto;
@@ -203,20 +225,20 @@ nav{
 
         /* Track */
         &::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, .2);
+            background: rgba(25, 25, 25, .1);
             border-radius: 13px;
         }
 
         /* Handle */
         &::-webkit-scrollbar-thumb {
-            background: linear-gradient(0deg, #55e7fc, #77e775);
+            background: linear-gradient(0deg, $fifth-color, $sixth-color);
             border-radius: 13px;
 
         }
 
         /* Handle on hover */
         &::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, #55e7fc, #77e775);
+            background: linear-gradient(180deg, $fifth-color, $sixth-color);
         }
     }
 
@@ -240,7 +262,7 @@ nav{
                 position: absolute;
                 top: 0;
                 height: 35px;
-                background: #2196f3;
+                background: $ninth-color;
                 border-radius: 2px;
                 transition: 0.5s;
             }
@@ -258,6 +280,233 @@ nav{
                 }
             }
         }
+    }
 
+    .myprogressbar {
+        padding: 0;
+        margin: 0;
+
+        .cst-progressbar {
+            z-index: 1000;
+            top: 70px;
+            left: 0;
+            height: 5px;
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+            background: linear-gradient(to top, #008aff, #00ffe7);
+            animation: animateprogressbar 5s linear infinite;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(to top, #008aff, #00ffe7);
+                filter: blur(10px);
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(to top, #008aff, #00ffe7);
+                filter: blur(10px);
+                filter: blur(10px);
+            }
+        }
+
+        @keyframes animateprogressbar {
+
+            0%,
+            100% {
+                filter: hue-rotate(0deg);
+            }
+
+            50% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .cst-percent {
+            z-index: 1000;
+            position: absolute;
+            top: 63px;
+            left: 0;
+            background: linear-gradient(to right, rgb(255, 0, 0), rgb(0, 0, 0));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: .8em;
+            display: none;
+            font-weight: bold;
+        }
+    }
+
+
+}
+
+%cst {
+    margin: 10px;
+    border-radius: 5px;
+    padding-left: 15px;
+    outline: none;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    background: transparent;
+}
+
+%cst-sm {
+    height: 30px;
+    font-size: 14px;
+    text-shadow: 0px 0px 5px;
+    @extend %cst;
+}
+
+%cst-md {
+    height: 40px;
+    font-size: 20px;
+    text-shadow: 0px 0px 5px;
+    @extend %cst;
+}
+
+%cst-lg {
+    height: 50px;
+    font-size: 24px;
+    text-shadow: 0px 0px 10px;
+    @extend %cst;
+}
+
+%cst-xlg {
+    height: 60px;
+    font-size: 28px;
+    text-shadow: 0px 0px 10px;
+    @extend %cst;
+}
+
+@mixin focusEffect($property) {
+    border-color: $property;
+    box-shadow: 0 2px 5px $property;
+}
+
+.input-cst-sm {
+    &[type=text] {
+        @extend %cst-sm;
+        color: $sixth-color;
+
+        &:focus {
+            @include focusEffect($sixth-color);
+        }
+    }
+
+    &[type=email] {
+        @extend %cst-sm;
+        color: $seventh-color;
+
+        &:focus {
+            @include focusEffect($seventh-color);
+        }
+    }
+
+    &[type=password] {
+        @extend %cst-sm;
+        color: $eighth-color;
+
+        &:focus {
+            @include focusEffect($eighth-color);
+        }
+    }
+}
+
+.input-cst-md {
+    &[type=text] {
+        @extend %cst-md;
+        color: $sixth-color;
+
+        &:focus {
+            @include focusEffect($sixth-color);
+        }
+    }
+
+    &[type=email] {
+        @extend %cst-md;
+        color: $seventh-color;
+
+        &:focus {
+            @include focusEffect($seventh-color);
+        }
+    }
+
+    &[type=password] {
+        @extend %cst-md;
+        color: $eighth-color;
+
+        &:focus {
+            @include focusEffect($eighth-color);
+        }
+    }
+}
+
+.input-cst-lg {
+    &[type=text] {
+        @extend %cst-lg;
+        color: $sixth-color;
+
+        &:focus {
+            @include focusEffect($sixth-color);
+        }
+    }
+
+    &[type=email] {
+        @extend %cst-lg;
+        color: $seventh-color;
+
+        &:focus {
+            @include focusEffect($seventh-color);
+        }
+    }
+
+    &[type=password] {
+        @extend %cst-lg;
+        color: $eighth-color;
+
+        &:focus {
+            @include focusEffect($eighth-color);
+        }
+    }
+}
+
+.input-cst-xlg {
+    &[type=text] {
+        @extend %cst-xlg;
+        color: $sixth-color;
+
+        &:focus {
+            @include focusEffect($sixth-color);
+        }
+    }
+
+    &[type=email] {
+        @extend %cst-xlg;
+        color: $seventh-color;
+
+        &:focus {
+            @include focusEffect($seventh-color);
+        }
+    }
+
+    &[type=password] {
+        @extend %cst-xlg;
+        color: $eighth-color;
+
+        &:focus {
+            @include focusEffect($eighth-color);
+        }
     }
 }

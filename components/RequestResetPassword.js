@@ -75,14 +75,22 @@ const RequestResetPassword = () => {
                 onSubmit={handleSubmit}
             >
                 <input
-                style={{ margin: "5px", height: "30px" }}
+                className="input-cst-lg"
                 type="email"
                 name="email"
                 placeholder="Email"
                 value={email}
                 onChange={handleChange}
                 />
-                <button
+                <div className="btn-wrapper">
+                    <button
+                        className="btns btn-bg-pur"
+                        draggable="false"
+                        type="submit"
+                        disabled={loading}
+                    >Submit</button>
+                </div>
+                {/* <button
                     style={{
                         margin: "5px",
                         padding: "10px",
@@ -96,7 +104,7 @@ const RequestResetPassword = () => {
                     disabled={loading}
                 >
                 Submit
-                </button>
+                </button> */}
             </form>
         </div>
     )

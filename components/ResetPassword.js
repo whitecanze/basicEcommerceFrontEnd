@@ -78,15 +78,23 @@ const ResetPassword = () => {
                 }}
                 onSubmit={handleSubmit}
             >
-                <input
-                style={{ margin: "5px", height: "30px" }}
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={password}
-                onChange={handleChange}
+                <input 
+                    className="input-cst-lg"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={handleChange}
                 />
-                <button
+                <div className="btn-wrapper">
+                    <button
+                        className="btns btn-bg-pur"
+                        draggable="false"
+                        type="submit"
+                        disabled={loading}
+                    >Submit</button>
+                </div>
+                {/* <button
                     style={{
                         margin: "5px",
                         padding: "10px",
@@ -100,7 +108,7 @@ const ResetPassword = () => {
                     disabled={loading}
                 >
                 Submit
-                </button>
+                </button> */}
             </form>
         </div>
     )

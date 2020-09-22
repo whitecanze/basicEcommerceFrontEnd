@@ -1,7 +1,9 @@
 import { withRouter } from 'next/router'
-import { useEffect, useState, useRef } from 'react'
-import Head from 'next/head'
+import {useContext,useEffect, useState, useRef } from 'react'
+import { AuthContext } from '../appState/AuthProvider'
+import Router from 'next/router'
 const Home = ({ router }) => {
+  const { user } = useContext(AuthContext)
   const ripple = e => {
     const buttons = document.querySelectorAll(".btns")
     buttons.forEach((button) => {
@@ -13,7 +15,9 @@ const Home = ({ router }) => {
         
         ripples.style.left = `${x}px`
         ripples.style.top = `${y}px`
+
         this.appendChild(ripples)
+        
         setTimeout(()=> {
           ripples.remove()
         }, 1000)
@@ -36,7 +40,20 @@ const Home = ({ router }) => {
     })
   }
 
+  const cstProgressBar = () => {
+    let myprogressbar = document.querySelector(".cst-progressbar")
+    // let progress = (window.pageYOffset / totalheight) * 100
+    //   if (progress > 100) {
+    //     progress = 100
+    //   }
+    // myprogressbar.style.width = progress + "%"
+    myprogressbar.style.width = "100%"
+  }
+
   useEffect(() => {
+    if (!user) {
+      Router.push('/signin')
+    }
     if (router.pathname === '/') {
       if ($('a').hasClass('nav-link')) {
         $('a').removeClass('active')
@@ -45,6 +62,8 @@ const Home = ({ router }) => {
     }
     ripple()
     indicatorSlidingMenu()
+    cstProgressBar()
+    
   },[])
 
   return (
@@ -261,6 +280,13 @@ const Home = ({ router }) => {
                   &#125;<br /><br />
                 </div>
               </div>
+            </div>
+          </div>
+          <br /><hr /><br />
+          <div className="content-page">
+            <div className = "myprogressbar">
+              <div className="cst-progressbar"></div>
+              <div className="cst-percent"></div>
             </div>
           </div>
           <br/><hr/><br/>

@@ -26,13 +26,11 @@ const Nav = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark sticky-top">
             <div className="container-fluid" style={{textAlign:'center',backgroundColor:"#ff5411",padding:'0',margin:'0'}}>
-                <Link href="/">
-                    <a className="navbar-brand" style={{
+                <div className="navbar-brand" style={{
                         fontSize: "2rem",
                         margin: "10px",
                         marginLeft:"50px"
-                    }}><i className="fab fa-opencart"></i></a>
-                </Link>
+                }}><i className="fab fa-opencart"></i></div>
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -54,12 +52,21 @@ const Nav = () => {
                 >
                 
                 <ul className="navbar-nav mr-auto mb-2 mb-lg-0">
-                    <li className="nav-item">
+                    {user &&
+                        <li className="nav-item">
                         <Link href="/">
                             <a id="Home-btn" className="nav-link" aria-current="page" id="Home-btn">Home</a>
                         </Link>
-                    </li>
-                    {user && user.email == "whitecanze123@gmail.com" &&
+                        </li>
+                    }
+                    {user &&
+                        <li className="nav-item">
+                            <Link href="/codeMirror">
+                                <a id="Home-btn" className="nav-link" aria-current="page" id="CodeMirror-btn">Code Mirror</a>
+                            </Link>
+                        </li>
+                    }
+                    {/* {user && user.email == "whitecanze123@gmail.com" &&
                         <li className="nav-item" style={liStyle}>
                             <Link href="/products">
                                 <a className="nav-link" id="Products-btn">Products</a>
@@ -72,7 +79,7 @@ const Nav = () => {
                                 <a className="nav-link" id="Manage-btn">Manage product</a>
                             </Link>
                         </li>
-                    }
+                    } */}
                     {user && user.email == "whitecanze123@gmail.com" &&
                         <li className="nav-item">
                             <Link href="/admin">
@@ -83,7 +90,7 @@ const Nav = () => {
                 </ul>
                     {user && (
                         <ul className="navbar-nav d-flex">
-                            <li className="nav-item" style={{
+                            {/* <li className="nav-item" style={{
                                 position:'relative'
                             }}>
                                 {user.email == "whitecanze123@gmail.com" && 
@@ -104,16 +111,23 @@ const Nav = () => {
                                         </a>
                                     </Link>
                                 }
-                            </li>
-                            <li className="nav-item" style={{
+                            </li> */}
+                            {/* <li className="nav-item" style={{
                                 cursor:"pointer"
                             }}>
                                 <Link href="/user/user_account">
-                                    <a className="nav-link" id="Account-btn">
+                                    <a className="nav-link" id="Account-btn" >
                                         Account
                                     </a>
                                 </Link>
+                            </li> */}
+                            {user && user.email === "whitecanze123@gmail.com" &&
+                            <li style={liStyle}>
+                                <Link href="/signup">
+                                    <a className="nav-link" id="Signup-btn">add user</a>
+                                </Link>
                             </li>
+                            }
                             <li className="nav-item" style={{
                                 cursor:"pointer"
                             }}>
@@ -129,11 +143,6 @@ const Nav = () => {
                             <li style={liStyle}>
                                 <Link href="/signin">
                                     <a className="nav-link" id="Signin-btn">Sign in</a>
-                                </Link>
-                            </li>
-                            <li style={liStyle}>
-                                <Link href="/signup">
-                                    <a className="nav-link" id="Signup-btn">Sign up</a>
                                 </Link>
                             </li>
                         </ul>

@@ -1,4 +1,4 @@
-import React, { useState, useContext,useRef } from "react"
+import React, { useState, useContext,useRef,useEffect } from "react"
 import Router from "next/router"
 import { useMutation } from "@apollo/react-hooks"
 import Cookies from "js-cookie"
@@ -86,17 +86,36 @@ const Signin = () => {
             console.log(error)
         }
     }
+
+    const ripple = e => {
+        const buttons = document.querySelectorAll(".btns")
+        buttons.forEach((button) => {
+        button.onclick = function (e) {
+            let x = e.pageX - e.target.offsetLeft
+            let y = e.pageY - e.target.offsetTop
+            
+            let ripples = document.createElement("span")
+            
+            ripples.style.left = `${x}px`
+            ripples.style.top = `${y}px`
+            this.appendChild(ripples)
+            setTimeout(()=> {
+            ripples.remove()
+            }, 1000)
+        }
+        })
+    }
+
+    useEffect(() => {
+        ripple()
+    })
     return (
-        <div
-            style={{
-                margin: "100px",
-                textAlign:"center"
-            }}
-        >
+        <div className="signin-container">
             
             <h1 style={{
                 textTransform:"uppercase",
-                fontWeight:'bold'
+                fontWeight: 'bold',
+                color:"#e85a19"
             }}>sign in</h1>
             <div>
                 {error && (
@@ -130,7 +149,7 @@ const Signin = () => {
             >
                 
                 <input
-                style={{ margin: "5px", height: "30px" }}
+                className="input-cst-lg"
                 type="email"
                 name="email"
                 placeholder="Email"
@@ -138,7 +157,7 @@ const Signin = () => {
                 onChange={handleChange}
                 />
                 <input
-                style={{ margin: "5px", height: "30px" }}
+                className="input-cst-lg"
                 type="password"
                 name="password"
                 placeholder="Password"
@@ -150,21 +169,14 @@ const Signin = () => {
                     size="invisible"
                     ref={reRef}
                 />
-                <button
-                style={{
-                    margin: "5px",
-                    padding: "10px",
-                    background: "teal",
-                    color: "white",
-                    border: "none",
-                    cursor: "pointer",
-                    fontSize: "18px"
-                }}
-                type="submit"
-                disabled={loading}
-                >
-                Submit
-                </button>
+                <div className="btn-wrapper">
+                    <button
+                        className="btns btn-bg-pur"
+                        draggable="false"
+                        type="submit"
+                        disabled={loading}
+                    >Submit</button>
+                </div>
             </form>
             <div>
                 <p>Forgot password? <span
