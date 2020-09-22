@@ -2,7 +2,7 @@ import React,{useEffect,useContext,useState} from 'react'
 import { withRouter } from 'next/router'
 import Router from 'next/router'
 import { AuthContext } from '../appState/AuthProvider'
-const Codemirror = () => {
+const Codemirror = ({ router }) => {
     const { user } = useContext(AuthContext)
 
     useEffect(() => {
