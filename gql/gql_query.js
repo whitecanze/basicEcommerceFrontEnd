@@ -69,6 +69,36 @@ export const QUERY_ALL_USERS = gql`
     }
 `
 
+export const QUERY_BLACKLIST = gql`
+    query QUERY_BLACKLIST{
+        checkBlackList{
+            jwt
+            createdAt
+        }
+    }
+`
+export const QUERY_ALL_TODOLIST = gql`
+    query QUERY_ALL_TODOLIST {
+        allTodoList{
+            id
+            text
+            completed
+            createdAt
+        }
+    }
+`
+export const QUERY_USER_TODOLIST = gql`
+    query QUERY_USER_TODOLIST {
+        userTodoList{
+            id
+            text
+            user
+            completed
+            createdAt
+        }
+    }
+`
+
 export const QUERY_PRODUCT = gql`
     query QUERY_PRODUCT($id: ID!){
         product(id: $id){

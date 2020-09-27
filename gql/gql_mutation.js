@@ -11,6 +11,62 @@ export const CREATE_PRODUCT = gql`
         }
     }
 `
+export const MAKE_BLACK_LIST = gql`
+    mutation MAKE_BLACK_LIST($jwt: String!){
+        makeBlackList(jwt:$jwt){
+            jwt
+            createdAt
+        }
+    }
+`
+export const CALCULATE_ABV = gql`
+    mutation CALCULATE_ABV($ssg: Float!,$fsh: Float!){
+        ABV(
+            ssg:$ssg
+            fsg:$fsh
+        ){
+            ssg
+            fsg
+            standard_formula
+            alternate_formula
+            abw_formula
+            standard_abv
+            standard_abw
+            alternate_abv
+            alternate_abw
+        }
+    }
+`
+
+export const CREATE_TODOLIST = gql`
+    mutation CREATE_TODOLIST($text: String!){
+        createTodoList(text:$text){
+            id
+            text
+            user
+            completed
+            createdAt
+        }
+    }
+`
+export const UPDATE_TODOLIST = gql`
+    mutation UPDATE_TODOLIST($id: ID!){
+        updateTodoList(id:$id){
+            message
+        }
+    }
+`
+export const DELETE_TODOLIST = gql`
+    mutation DELETE_TODOLIST($id: ID!){
+        deleteTodoList(id:$id){
+            id
+            text
+            user
+            completed
+            createdAt
+        }
+    }
+`
 
 export const ADD_TO_CART = gql`
     mutation ADD_TO_CART(

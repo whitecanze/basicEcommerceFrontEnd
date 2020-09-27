@@ -1,12 +1,49 @@
 import React,{ useEffect,useContext,useState } from 'react'
 import { AuthContext } from '../appState/AuthProvider'
 import Router from 'next/router'
-import { QUERY_ALL_USERS } from '../gql/gql_query'
-import { useQuery } from '@apollo/react-hooks'
+import { QUERY_ALL_USERS, QUERY_ALL_TODOLIST } from '../gql/gql_query'
+// import {CALCULATE_ABV} from '../gql/gql_mutation'
+import { useQuery, useMutation } from '@apollo/react-hooks'
 import { withRouter } from 'next/router'
+import gql from 'graphql-tag'
+
+export const CALCULATE_ABV = gql`
+    mutation CALCULATE_ABV($ssg: Float!,$fsh: Float!){
+        ABV(
+            ssg:$ssg
+            fsg:$fsh
+        ){
+            ssg
+            fsg
+            standard_formula
+            alternate_formula
+            abw_formula
+            standard_abv
+            standard_abw
+            alternate_abv
+            alternate_abw
+        }
+    }
+`
 const adminPage = ({ router }) => {
     const { data, loading, error } = useQuery(QUERY_ALL_USERS)
+    const { data2, loading2, error2} = useQuery(QUERY_ALL_TODOLIST)
     const { user } = useContext(AuthContext)
+    const [calData, setCalData] = useState({
+        ssg: "",
+        fsg:""
+    })
+
+
+    const [ABV, { loading3, error3 }] = useMutation(CALCULATE_ABV, {
+        variables: {...parseFloat(calData)},
+        onCompleted: data => {
+            if (data) {
+                console.log(data)
+            }
+			// $('#' + productData.id).remove()
+		}
+	})
 
     const hiding_userid = (user_id) => {
         let split_id = user_id.substring(0,4)
@@ -28,10 +65,29 @@ const adminPage = ({ router }) => {
             }
         }
     })
+
+    const handlerCalculate = async (e) => {
+        try {
+            e.preventDefault()
+            await ABV()
+        } catch (error) {
+            console.log(error)
+        }
+        
+    }
+
+    const inputCalHandler = e => {
+        // console.log(e.target.value)
+        setCalData({
+            ...calData,
+            [e.target.name]: e.target.value
+        })
+    }
+
     // console.log(data)
     return (
         <div>
-            {error &&
+            {error || error2  &&
                 <div style={{
                 width: "500px",
                 height: "auto",
@@ -49,7 +105,7 @@ const adminPage = ({ router }) => {
                 }}>😓Ooobs...&nbsp;something went wrong,<br /> Please try agian later. 📌</h5>
                 </div>
             }
-            {loading &&
+            {loading || loading2 && 
                 <div style={{
                 width: "500px",
                 height: "auto",
@@ -71,49 +127,29 @@ const adminPage = ({ router }) => {
             {user && user.email == "whitecanze123@gmail.com" &&
                 <div className="container">
                     <h1>Admin Page</h1>
-                    <table style={{
-                        border:'solid 1px darkgray'
-                    }}>
-                        <tr style={{
-                        border:'solid 1px darkgray'
-                    }}>
-                            <td style={{
-                        border:'solid 1px darkgray'
-                    }}>ID</td>
-                            <td style={{
-                        border:'solid 1px darkgray'
-                    }}>NAME</td>
-                            <td style={{
-                        border:'solid 1px darkgray'
-                    }}>EMAIL</td>
-                            <td style={{
-                        border:'solid 1px darkgray'
-                    }}>CREATED AT</td>
-                        </tr>
-                    {data && data.users ? data.users.map(user => 
-                        <tr key={user.id} style={{
-                        border:'solid 1px darkgray'
-                        }}>
-                            <td style={{
-                            border:'solid 1px darkgray'
-                        }}>{hiding_userid(user.id)}....</td>
-                            <td style={{
-                            border:'solid 1px darkgray'
-                        }}>{user.name}</td>
-                            <td style={{
-                            border:'solid 1px darkgray'
-                        }}>{user.email}</td>
-                            <td style={{
-                            border:'solid 1px darkgray'
-                        }}>{user.createdAt}</td>
+                    <table className="table table-dark table-striped" >
+                        <thead>
+                            <tr>
+                                <td>ID</td>
+                                <td>NAME</td>
+                                <td>EMAIL</td>
+                                <td>CREATED AT</td>
                             </tr>
-                        ) : <><h3>Empty!</h3></>
-                    }
+                        </thead>
+                        <tbody>
+                            {data && data.users && data.users.map(user => 
+                                <tr key={user.id}>
+                                    <td>{hiding_userid(user.id)}....</td>
+                                    <td>{user.name}</td>
+                                    <td>{user.email}</td>
+                                    <td>{user.createdAt}</td>
+                                </tr>
+                                )
+                            }
+                        </tbody>
                     </table>
-                    
                 </div>
             }
-            
         </div>
     )
 }

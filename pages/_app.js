@@ -6,6 +6,7 @@ import fetch from "isomorphic-unfetch"
 import cookie from 'cookie'
 import '../styles/style.scss'
 
+
 // function MyApp({ Component, pageProps, apollo }) {
 //   return (
 //     <AuthProvider>
@@ -96,12 +97,23 @@ MyApp.getInitialProps = async ({ctx, router}) => {
     return null
   } else {
     if (router.pathname === '/signin') {
-      ctx.res.writeHead(302, { Location: '/products' })
+      ctx.res.writeHead(302, { Location: '/' })
       ctx.res.end()
     } 
   }
 
   // console.log(token)
+  // const response = await fetch('https://backend-api-01.herokuapp.com/graphql', {
+  //   method: 'post',
+  //   headers: {
+  //     'Access-Control-Allow-Origin': '*',
+  //     'Content-Type': 'application/json',
+  //     authorization: `Bearer ${token}` || "",
+      
+  //   },
+  //   body: JSON.stringify(QUERY_USER)
+  // })
+  // const response = await fetch('https://backend-api-01.herokuapp.com/playground', {
   const response = await fetch('https://backend-api-01.herokuapp.com/graphql', {
     method: 'post',
     headers: {

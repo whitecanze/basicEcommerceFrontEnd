@@ -8,7 +8,7 @@ const SignInPage = ({ router }) => {
     // console.log(router.pathname)
     useEffect(() => {
         if (user) {
-            Router.push('/products')
+            Router.push('/')
         }
         if (router.pathname === '/signin') {
             if ($('a').hasClass('nav-link')) {

@@ -55,17 +55,24 @@ const Nav = () => {
                     {user &&
                         <li className="nav-item">
                         <Link href="/">
-                            <a id="Home-btn" className="nav-link" aria-current="page" id="Home-btn">Home</a>
+                            <a id="Home-btn" className="nav-link" aria-current="page" >Home</a>
                         </Link>
                         </li>
                     }
                     {user &&
                         <li className="nav-item">
+                            <Link href="/todolistPage">
+                                <a id="Todolist-btn" className="nav-link" aria-current="page" >TodoList</a>
+                            </Link>
+                        </li>
+                    }
+                    {/* {user &&
+                        <li className="nav-item">
                             <Link href="/codeMirror">
                                 <a id="Home-btn" className="nav-link" aria-current="page" id="CodeMirror-btn">Code Mirror</a>
                             </Link>
                         </li>
-                    }
+                    } */}
                     {/* {user && user.email == "whitecanze123@gmail.com" &&
                         <li className="nav-item" style={liStyle}>
                             <Link href="/products">

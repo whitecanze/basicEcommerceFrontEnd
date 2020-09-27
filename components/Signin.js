@@ -1,10 +1,11 @@
 import React, { useState, useContext,useRef,useEffect } from "react"
 import Router from "next/router"
-import { useMutation } from "@apollo/react-hooks"
+import { useQuery,useMutation } from "@apollo/react-hooks"
 import Cookies from "js-cookie"
 import { AuthContext } from '../appState/AuthProvider'
 import ReCAPTCHA from "react-google-recaptcha"
-import {LOG_IN} from '../gql/gql_mutation'
+import { LOG_IN } from '../gql/gql_mutation'
+import {QUERY_BLACKLIST} from '../gql/gql_query'
 
 
 const Signin = () => {
@@ -20,6 +21,8 @@ const Signin = () => {
         password: ""
     })
 
+    const { dataBlackList } = useQuery(QUERY_BLACKLIST)
+
     const { setAuthUser } = useContext(AuthContext)
 
     const [login, { loading, error }] = useMutation(LOG_IN, {
@@ -28,6 +31,7 @@ const Signin = () => {
             if (data) {
             setAuthUser(data.login.user)
             Cookies.set("jwt", data.login.jwt)
+            console.log(dataBlackList)
             setUserInfo({
                 email: "",
                 password: ""

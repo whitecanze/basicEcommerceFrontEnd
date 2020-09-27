@@ -7,8 +7,12 @@ import withApollo from "next-with-apollo"
 import cookie from "cookie"
 
 const uri = "https://backend-api-01.herokuapp.com/graphql"
+// const uri = "https://backend-api-01.herokuapp.com/playground"
 
-const httpLink = createHttpLink({ uri, fetch })
+const httpLink = createHttpLink({
+  uri,
+  fetch
+})
 
 const authLink = setContext((_, { headers }) => {
   // Get token from cookie

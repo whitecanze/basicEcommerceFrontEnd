@@ -13,6 +13,7 @@
     "apollo-client": "^2.6.10",
     "apollo-link-context": "^1.0.20",
     "apollo-link-http": "^1.5.17",
+    "axios": "^0.20.0",
     "cookie": "^0.4.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
