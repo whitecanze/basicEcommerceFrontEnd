@@ -145,7 +145,7 @@ const Nav = () => {
                         </ul>
                     )}
                     
-                    {!user && (
+                    {/* {!user && (
                         <ul className="navbar-nav d-flex">
                             <li style={liStyle}>
                                 <Link href="/signin">
@@ -153,7 +153,7 @@ const Nav = () => {
                                 </Link>
                             </li>
                         </ul>
-                    )}
+                    )} */}
                     </div>
                 </div>
         </nav>

@@ -47,10 +47,10 @@ const Home = ({ router }) => {
               scrolling="no"
               title="Ripple animation"
               src="https://codepen.io/whitecanze/embed/preview/XWdGGbx?height=265&theme-id=dark&default-tab=html,result"
-              frameborder="no"
+              frameBorder="no"
               loading="lazy"
               allowtransparency="true"
-              allowfullscreen="true"
+              allowFullScreen="true"
             >
               See the Pen <a href='https://codepen.io/whitecanze/pen/XWdGGbx'>Ripple animation</a> by whitecanze
               (<a href='https://codepen.io/whitecanze'>@whitecanze</a>) on <a href='https://codepen.io'>CodePen</a>.
@@ -65,10 +65,10 @@ const Home = ({ router }) => {
               scrolling="no"
               title="Animated sliding menu indicator"
               src="https://codepen.io/whitecanze/embed/preview/ExKMMQB?height=265&theme-id=dark&default-tab=css,result"
-              frameborder="no"
+              frameBorder="no"
               loading="lazy"
               allowtransparency="true"
-              allowfullscreen="true"
+              allowFullScreen="true"
             >
               See the Pen <a href='https://codepen.io/whitecanze/pen/ExKMMQB'>Animated sliding menu indicator</a> by whitecanze
               (<a href='https://codepen.io/whitecanze'>@whitecanze</a>) on <a href='https://codepen.io'>CodePen</a>.
@@ -83,10 +83,10 @@ const Home = ({ router }) => {
               scrolling="no"
               title="Rainbow progressbar"
               src="https://codepen.io/whitecanze/embed/preview/LYNaaBp?height=265&theme-id=dark&default-tab=css,result"
-              frameborder="no"
+              frameBorder="no"
               loading="lazy"
               allowtransparency="true"
-              allowfullscreen="true"
+              allowFullScreen="true"
             >
               See the Pen <a href='https://codepen.io/whitecanze/pen/LYNaaBp'>Rainbow progressbar</a> by whitecanze
               (<a href='https://codepen.io/whitecanze'>@whitecanze</a>) on <a href='https://codepen.io'>CodePen</a>.
